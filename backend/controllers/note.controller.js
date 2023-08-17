@@ -3,15 +3,15 @@ const { NoteModel } = require("../schema/");
 class NoteController {
   getNotes = async (req, res) => {
     const toDoModel = await NoteModel.find();
-    res.send(toDoModel);
+    res.status(200).send();
   };
 
   createNote = async (req, res) => {
     const { text } = req.body;
 
-    await NoteModel.create({ text }).then((data) => {
+    await NoteModel.create({ text }).then(() => {
       console.log(`Added Successfully`);
-      res.send(data);
+      res.status(201).send();
     });
   };
 
@@ -21,14 +21,14 @@ class NoteController {
     await NoteModel.findByIdAndUpdate({ _id: id }, req.body, {
       new: true,
     });
-    res.send();
+    res.status(204).send();
   };
 
   deleteNote = async (req, res) => {
     const { id } = req.params;
 
     await NoteModel.findByIdAndDelete({ _id: id });
-    res.send();
+    res.status(204).send();
   };
 }
 
