@@ -3,7 +3,7 @@ const { NoteModel } = require("../schema/");
 class NoteController {
   getNotes = async (req, res) => {
     const toDoModel = await NoteModel.find();
-    res.status(200).send();
+    res.status(200).send(toDoModel);
   };
 
   createNote = async (req, res) => {
