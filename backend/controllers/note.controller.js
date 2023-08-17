@@ -16,19 +16,19 @@ class NoteController {
   };
 
   updateNote = async (req, res) => {
-    const { id } = req.params;
+    const { id: _id } = req.params;
 
-    await NoteModel.findByIdAndUpdate({ _id: id }, req.body, {
-      new: true,
+    await NoteModel.findByIdAndUpdate(_id, req.body).then(() => {
+      res.status(204).send(console.log(`Updated Successfully`));
     });
-    res.status(204).send();
   };
 
   deleteNote = async (req, res) => {
     const { id } = req.params;
 
-    await NoteModel.findByIdAndDelete({ _id: id });
-    res.status(204).send();
+    await NoteModel.findByIdAndDelete({ _id: id }).then(() => {
+      res.status(204).send(console.log(`Removed successfully`));
+    });
   };
 }
 
