@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const { Configuration } = require("./config");
 const { NoteRoutes } = require("./routes");
 
@@ -9,6 +10,7 @@ MONGO_URI = Configuration.get("MONGO_URI");
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 app.use("/api/notes/", NoteRoutes);
 
